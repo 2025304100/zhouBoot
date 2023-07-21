@@ -5,4 +5,6 @@ import com.zhou.zhouboot.entity.DemoUser;
 
 public interface DemoUserMapper extends BaseMapper<DemoUser> {
 
+    void addUser(DemoUser demoUser);
+
 }

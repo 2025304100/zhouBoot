@@ -1,12 +1,11 @@
 package com.zhou.zhouboot.controller;
 
+import com.zhou.zhouboot.exception.NoAuthorizedException;
+import com.zhou.zhouboot.service.DemoUserImp;
 import com.zhou.zhouboot.vo.DemoUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author zhougq
@@ -16,9 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoUser {
     @Autowired
     private ApplicationContext applicationContext;
-  @PostMapping(value = "/addUser")
-  public String addUser(@RequestBody DemoUserVo demoUserVo){
-        applicationContext.getBean("demoUserImp",com.zhou.zhouboot.service.DemoUserImp.class).addUser(demoUserVo);
-      return "success";
-  }
+    @Autowired
+    private DemoUserImp demoUserImp;
+
+    @PostMapping(value = "/addUser")
+    public String addUser(@RequestBody DemoUserVo demoUserVo) {
+        demoUserImp.addUser(demoUserVo);
+        return "success";
+    }
+
+    @GetMapping(value = "/login")
+    public String login() throws NoAuthorizedException {
+
+        System.out.println("login------------------------------>");
+        throw new NoAuthorizedException("112");
+//        return "login";
+    }
 }

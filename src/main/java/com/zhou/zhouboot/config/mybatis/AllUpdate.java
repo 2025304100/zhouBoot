@@ -1,4 +1,4 @@
-package com.zhou.zhouboot.config;
+package com.zhou.zhouboot.config.mybatis;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -20,7 +20,7 @@ import java.lang.annotation.Annotation;
 @Intercepts({
 @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }),
 })
-public class Mybatis implements Interceptor {
+public class AllUpdate implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

@@ -6,10 +6,12 @@ import com.zhou.zhouboot.utils.MyVoToModel;
 import com.zhou.zhouboot.vo.DemoUserVo;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.Aware;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhougq
@@ -17,9 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DemoUserImp implements ApplicationContextAware {
     private ApplicationContext applicationContext;
+    @Autowired(required = false)
+    private DemoUserMapper demoUserMapper;
     @Transactional(rollbackFor = Exception.class)
     public String addUser(DemoUserVo demoUserVo) {
-        DemoUserMapper demoUserMapper = (DemoUserMapper) applicationContext.getBean("demoUserMapper");
+//        DemoUserMapper demoUserMapper = (DemoUserMapper) applicationContext.getBean("demoUserMapper");
         DemoUser demoUser = new DemoUser();
         MyVoToModel<DemoUser,DemoUserVo> model = new MyVoToModel<>();
         model.voToModel(demoUserVo,demoUser);

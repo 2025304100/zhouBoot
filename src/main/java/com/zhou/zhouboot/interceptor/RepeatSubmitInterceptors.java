@@ -20,6 +20,7 @@ public abstract class RepeatSubmitInterceptors implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod) {
+            System.out.println("RepeatSubmitInterceptors------------------------->");
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
             RepealSubmit annotation = method.getAnnotation(RepealSubmit.class);

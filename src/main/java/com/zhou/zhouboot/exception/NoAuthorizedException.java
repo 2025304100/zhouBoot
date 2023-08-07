@@ -14,3 +14,4 @@ public class NoAuthorizedException extends Exception {
         super(message);
     }
 }
+
